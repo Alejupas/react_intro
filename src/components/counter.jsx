@@ -4,7 +4,7 @@ class Counter extends Component {
 
     //lokali komponento busena
     state = {
-        count: 0,
+        count: 12,
         imgUrl: 'https://placeimg.com/500/200/tech',
         colors: ['yellow', 'green', 'blue'],
     }
@@ -15,9 +15,17 @@ class Counter extends Component {
         textAlign: 'center',
     }
 
-    handleIncrement(){
+    // constructor(){
+    //     super();
+    //     console.log('constructor', this);
+    //     // this --> Counter
+    //     // this --> Counter this.handleIncrement viduje
+    //     this.handleIncrement = this.handleIncrement.bind(this)
+    // }
+
+    handleIncrement = () => {
         console.log('you pressed a button');
-        console.log("this.state.count",this)
+        console.log("this.state.count", this.state.count)
         //obj.method() this === obj
         // function() this === window, undefined
     }
