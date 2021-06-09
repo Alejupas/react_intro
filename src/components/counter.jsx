@@ -23,21 +23,29 @@ class Counter extends Component {
     //     this.handleIncrement = this.handleIncrement.bind(this)
     // }
 
-    handleIncrement = () => {
-        console.log('you pressed a button');
-        console.log("this.state.count", this.state.count)
+    handleIncrement = (btnId) => {
+        console.log('btnId',btnId);
         // nIEKADA NEKEICIAM STATE TIESIOGIAI !!!!!!!!!
+        //nes tik consolej atsivaizduos bet ne dome. lol
+        // console.log("this.state.count", this.state.count)
         // this.state.count ++;
-        this.setState({count : this.state.count + 1})
+        if (btnId === 'btn_1') {
+            this.setState({count : this.state.count + 1})
+            return;
+        } 
+        this.setState({count: this.state.count - 1})
     }
+    
+
 
     render(){
         return (
             <div className="container mt-4">
                <h2 style={{fontSize: '3em'}}>I am React Counter Component</h2>
-               <span className="badge badge-info mr-3">{ 5 }</span>
+               {/* <span className="badge badge-info mr-3">{ 5 }</span> */}
                <span className={this.getBadgeClasses()}>{ this.formatCount() }</span>
-                <button onClick={this.handleIncrement} className="btn btn-warning">Press me</button> 
+                <button onClick={()=>this.handleIncrement('btn_1')} className="btn btn-warning">Increase 1</button> 
+                <button onClick={()=>this.handleIncrement('btn_2')} className="btn btn-info">Minus 1</button> 
                 
                 <ul className="list-group">
                     { this.state.colors.length === 0 && <p className="alert alert-warning">There are no colors left</p>}
