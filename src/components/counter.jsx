@@ -4,7 +4,7 @@ class Counter extends Component {
 
     //lokali komponento busena
     state = {
-        count: 12,
+        count: 1,
         imgUrl: 'https://placeimg.com/500/200/tech',
         colors: ['yellow', 'green', 'blue'],
     }
@@ -26,8 +26,9 @@ class Counter extends Component {
     handleIncrement = () => {
         console.log('you pressed a button');
         console.log("this.state.count", this.state.count)
-        //obj.method() this === obj
-        // function() this === window, undefined
+        // nIEKADA NEKEICIAM STATE TIESIOGIAI !!!!!!!!!
+        // this.state.count ++;
+        this.setState({count : this.state.count + 1})
     }
 
     render(){
