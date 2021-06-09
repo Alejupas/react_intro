@@ -1,7 +1,8 @@
+import Counters from './components/counters';
 function App() {
   return (
-    <div className="App">
-      <h1>Hello world of React!</h1>
+    <div className="App container mt-3">
+      <Counters />
     </div>
   );
 }

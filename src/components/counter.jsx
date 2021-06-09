@@ -1,88 +1,63 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class Counter extends Component {
+  // locali componento busena
+  state = {
+    count: this.props.value,
+  };
 
-    //lokali komponento busena
-    state = {
-        count: 1,
-        imgUrl: 'https://placeimg.com/500/200/tech',
-        colors: ['yellow', 'green', 'blue'],
-    }
+  h2ElStyles = {
+    background: 'tomato',
+    color: 'snow',
+    textAlign: 'center',
+  };
 
-    h2ElStyles = {
-        background: 'tomato',
-        color: 'snow',
-        textAlign: 'center',
-    }
+  // arrow funkcija nekuria savo this
+  handleIncrement = (btnId) => {
+    console.log('btnId', btnId);
+    // niekada nekeiciam state tiesiogiai !!!!!!
+    // this.state.count++;
 
-    // constructor(){
-    //     super();
-    //     console.log('constructor', this);
-    //     // this --> Counter
-    //     // this --> Counter this.handleIncrement viduje
-    //     this.handleIncrement = this.handleIncrement.bind(this)
-    // }
+    let diff = btnId === 'btn_1' ? 1 : -1;
 
-    handleIncrement = (btnId) => {
-        console.log('btnId',btnId);
-        // nIEKADA NEKEICIAM STATE TIESIOGIAI !!!!!!!!!
-        //nes tik consolej atsivaizduos bet ne dome. lol
-        // console.log("this.state.count", this.state.count)
-        // this.state.count ++;
-        if (btnId === 'btn_1') {
-            this.setState({count : this.state.count + 1})
-            return;
-        } 
-        this.setState({count: this.state.count - 1})
-    }
-    
+    this.setState({ count: this.state.count + diff });
+  };
 
+  render() {
+    console.log('this.props', this.props);
+    return (
+      <div className="mt-4">
+        {this.props.children}
+        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
+        <div className="btn-group">
+          <button onClick={() => this.handleIncrement('btn_1')} className="btn btn-warning">
+            +
+          </button>
+          <button onClick={() => this.handleIncrement('btn_2')} className="btn btn-info">
+            -
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-    render(){
-        return (
-            <div className="container mt-4">
-               <h2 style={{fontSize: '3em'}}>I am React Counter Component</h2>
-               {/* <span className="badge badge-info mr-3">{ 5 }</span> */}
-               <span className={this.getBadgeClasses()}>{ this.formatCount() }</span>
-               <div className="btn btn-group">
-                <button onClick={()=>this.handleIncrement('btn_1')} className="btn btn-warning">+</button> 
-                <button onClick={()=>this.handleIncrement('btn_2')} className="btn btn-info">-</button> 
-                </div>
-                
-                <ul className="list-group">
-                    { this.state.colors.length === 0 && <p className="alert alert-warning">There are no colors left</p>}
-                    { this.renderColors()}
-                    
-                </ul>
+  renderColors() {
+    return this.state.colors.map((color) => (
+      <li key={color} style={{ background: color }} className="list-group-item">
+        {color}
+      </li>
+    ));
+  }
+  getBadgeClasses() {
+    let badgeClasses = 'badge mr-3 badge-';
+    badgeClasses += this.state.count === 0 ? 'danger' : 'info';
+    return badgeClasses;
+  }
 
-                <div className='mt-5'>
-                    <img src={this.state.imgUrl} alt="tech" />
-                </div>
-            </div>            
-        );
-    }
-
-    renderColors(){
-
-            return  this.state.colors.map(color => 
-                (<li key={color}
-                style={{backgroundColor: color}} 
-                className="list-group-item">{color}</li>))
-        }
-
-    getBadgeClasses() {
-        let badgeClasses = 'badge mr-3 badge-';
-        badgeClasses += this.state.count === 0 ? 'danger' : 'info';
-        return badgeClasses;
-    }
-
-    formatCount(){
-        //destrukturizavimas
-        const {count} = this.state
-        return count === 0 ? 'Out Of Stock' : count
-    }
-
-
+  formatCount() {
+    const { count } = this.state;
+    return count === 0 ? 'Out of stock' : count;
+  }
 }
 
-export default Counter
+export default Counter;

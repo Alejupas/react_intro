@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import App from './App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-//import Bootstrap
-import 'bootstrap/dist/css/bootstrap.css';
 
-//import Counter class from counter.jsx
-import Counter from './components/counter';
+// import bootstrap
+import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Counter />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
