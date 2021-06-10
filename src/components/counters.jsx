@@ -7,15 +7,15 @@ class Counters extends Component {
     return (
       <div>
         <h2>Counters component</h2>
-        <button onClick={this.handleReset} className="btn btn-sm btn-warning">
+        <button onClick={this.props.onReset} className="btn btn-sm btn-warning">
           Reset counters
         </button>
-        {this.state.counters.map((c) => (
+        {this.props.counters.map((c) => (
           <Counter
             key={c.id}
             counter={c}
-            onIncrement={this.handleIncrement}
-            onDelete={this.handleDelete}
+            onIncrement={this.props.onIncrement}
+            onDelete={this.props.onDelete}
           ></Counter>
         ))}
       </div>

@@ -14,7 +14,9 @@ class App extends Component {
 
   handleDelete = (idToDelete) => {
     // gauti state busena be to el kuris buvo paspaustas
-    const countersWihtoutOne = this.state.counters.filter((c) => c.id !== idToDelete);
+    const countersWihtoutOne = this.state.counters.filter(
+      (c) => c.id !== idToDelete
+    );
     // console.log(countersWihtoutOne);
     // nustatyti nauja busena su setState()
     this.setState({ counters: countersWihtoutOne });
@@ -39,9 +41,9 @@ class App extends Component {
     console.log('counter', counter);
 
     //pasidaryti counters kopija
- const countersCopy = [...this.state.counters]
+    const countersCopy = [...this.state.counters];
     //surasti kuris counteris paprase padidinti
-    const counterToIncrement = countersCopy.find(c => c.id === counter.id)
+    const counterToIncrement = countersCopy.find((c) => c.id === counter.id);
     // console.log('counterToIncrement',counterToIncrement);
     // console.log('counterToIncrement ==== counter',counterToIncrement === counter);
 
@@ -49,24 +51,26 @@ class App extends Component {
     counterToIncrement.value++;
 
     //padaryti this.setState({})
-    this.setState({counters: countersCopy})
-
-
+    this.setState({ counters: countersCopy });
 
     // niekada nekeiciam state tiesiogiai !!!!!!
     // this.state.count++;
     // let diff = btnId === 'btn_1' ? 1 : -1;
-    
+
     // this.setState({ value: this.state.value + diff });
   };
-
 
   render() {
     return (
       <div className="App ">
         <NavBar />
         <main className="container mt-3">
-          <Counters />
+          <Counters
+            counters={this.state.counters}
+            onReset={this.handleReset}
+            onDelete={this.handleDelete}
+            onIncrement={this.handleIncrement}
+          />
         </main>
       </div>
     );
